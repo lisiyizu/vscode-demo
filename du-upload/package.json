@@ -1,0 +1,94 @@
+{
+	"name": "du-upload",
+	"displayName": "Du Upload",
+	"description": "vscode快捷上传文件到CDN，包括图片、Excel、音频、视频等，图片可实时预览",
+	"author": "程天庆 <chengtianqing@shizhuang-inc.com>",
+	"publisher": "DewuTeam",
+	"version": "0.0.4",
+	"engines": {
+		"vscode": "^1.59.0"
+	},
+	"categories": [
+		"Extension Packs",
+		"Programming Languages",
+		"Visualization",
+		"Debuggers",
+		"Notebooks"
+	],
+	"keywords": [
+		"Upload",
+		"du",
+		"du upload",
+		"de",
+		"Poizon",
+		"dewu",
+		"Visual",
+		"Intelli Code",
+		"AI",
+		"Autocomplete",
+		"JavaScript",
+		"TypeScript",
+		"图片预览",
+		"上传"
+	],
+	"icon": "public/logo.png",
+	"activationEvents": [
+		"*"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.du.upload",
+				"title": "上传文件到CDN"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "extension.du.upload",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0",
+		"test-compile": "tsc -p ./",
+		"test-watch": "tsc -watch -p ./",
+		"pretest": "yarn run test-compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.59.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"ts-loader": "^9.2.2",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0"
+	},
+	"dependencies": {
+		"form-data": "^4.0.0",
+		"node-fetch": "^2.6.1"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
+}
