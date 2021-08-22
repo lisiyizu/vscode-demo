@@ -1,0 +1,17 @@
+{
+  "Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	},
+  "Import from": {
+		"prefix": "import",
+		"body": [
+			"import '$1' from $2;"
+		],
+		"description": "import from other"
+	}
+}
