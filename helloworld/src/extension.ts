@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { uploadFile } from './upload';
 const path = require('path');
 const fs = require('fs');
+import { html } from './template';
 
 const imgType = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg'];
 const audioType = ['mp3'];
@@ -148,4 +149,5 @@ export function activate(context: vscode.ExtensionContext) {
 			// return new vscode.Hover(markdown);
 		}
 	}));
+
 }

@@ -1,0 +1,164 @@
+{
+	"name": "du-i18n",
+	"displayName": "Du I18N",
+	"description": "vscode国际化多语言解决方案",
+	"author": "程天庆 <chengtianqing@shizhuang-inc.com>",
+	"publisher": "DewuTeam",
+	"version": "0.0.15",
+	"engines": {
+		"vscode": "^1.59.0"
+	},
+	"categories": [
+		"Extension Packs",
+		"Programming Languages",
+		"Visualization",
+		"Debuggers",
+		"Notebooks"
+	],
+	"keywords": [
+		"I18N",
+		"du",
+		"du i18n",
+		"de",
+		"Poizon",
+		"dewu",
+		"JavaScript",
+		"TypeScript",
+		"得物",
+		"毒",
+		"国际化",
+		"国际一体化",
+		"多语言"
+	],
+	"icon": "public/logo.png",
+	"activationEvents": [
+		"*"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.du.i18n.change",
+				"title": "显示语言切换"
+			},
+			{
+				"command": "extension.du.i18n.setting",
+				"title": "配置"
+			},
+			{
+				"command": "extension.du.i18n.add",
+				"title": "批量新增"
+			},
+			{
+				"command": "extension.du.i18n.receive",
+				"title": "自定义命令"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "resourceExtname =~ /\\.(ts|js|tsx|jsx|vue|html|json|yaml|yml)$/",
+					"submenu": "submenu/command",
+					"group": "navigation"
+				}
+			],
+			"submenu/command": [
+				{
+					"command": "extension.du.i18n.change",
+					"group": "navigation@1"
+				},
+				{
+					"command": "extension.du.i18n.add",
+					"group": "navigation@3"
+				},
+				{
+					"command": "extension.du.i18n.setting",
+					"group": "navigation@20"
+				}
+			]
+		},
+		"submenus": [
+			{
+				"id": "submenu/command",
+				"label": "国际化（i18n）"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "国际多语言配置",
+			"properties": {
+				"dui18n.a.includePaths": {
+					"type": "string",
+					"default": "",
+					"description": "【必填】设置语言文件夹路径，并且会以该文件夹中的文件名作为语言key值。可设置多个，以英文逗号分隔。例如**/i18n/**"
+				},
+				"dui18n.b.defaultPath": {
+					"type": "string",
+					"default": "",
+					"description": "【可选】设置默认语言文件，默认以文件语言作为显示语言，默认会以上一步的【语言文件夹路径】中第一个文件作为默认值。文件后缀不限ts,js,json，系统会扫描大括号{}内的对象，只要包含{}即可。例如**/i18n/zh.js"
+				},
+				"dui18n.c.includeKeys": {
+					"type": "string",
+					"default": "",
+					"description": "【必填】设置文件中要扫描识别的key集合，不要设置左右括号，默认会带上括号。可设置多个，以英文逗号分隔。例如i18n.t, this.$t, $t"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./ && npm run package",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+		"watch": "npm-run-all -p watch:*",
+		"watch:extension": "tsc -watch -p ./",
+		"watch:view": "webpack --watch --mode development",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "^16.7.5",
+		"@types/prettier": "^2.3.2",
+		"@types/react": "^17.0.19",
+		"@types/react-dom": "^17.0.9",
+		"@types/react-router-dom": "^5.1.8",
+		"@types/vscode": "^1.59.0",
+		"@typescript-eslint/eslint-plugin": "^4.29.3",
+		"@typescript-eslint/parser": "^4.29.3",
+		"babel-plugin-import": "^1.13.3",
+		"clean-webpack-plugin": "^4.0.0-alpha.0",
+		"css-loader": "^6.2.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^7.32.0",
+		"eslint-plugin-react-hooks": "^4.2.0",
+		"glob": "^7.1.7",
+		"less-loader": "^10.0.1",
+		"mocha": "^8.4.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^3.0.2",
+		"style-loader": "^3.2.1",
+		"terser-webpack-plugin": "^5.1.4",
+		"ts-loader": "^9.2.5",
+		"typescript": "^4.4.2",
+		"vscode-test": "^1.6.1",
+		"webpack": "^5.51.1",
+		"webpack-cli": "^4.8.0"
+	},
+	"dependencies": {
+		"@ant-design/icons": "^4.6.4",
+		"antd": "^4.16.13",
+		"lodash": "^4.17.21",
+		"prettier": "^2.3.2",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"yaml": "^1.10.2"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
+}

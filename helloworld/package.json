@@ -30,6 +30,10 @@
 			{
 				"command": "extension.du.uploadImage",
 				"title": "上传图片"
+			},
+			{
+				"command": "extension.du.openWebView",
+				"title": "打开webview"
 			}
 		],
 		"menus": {
@@ -37,6 +41,11 @@
 				{
 					"when": "editorFocus",
 					"command": "extension.du.uploadImage",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "extension.du.openWebView",
 					"group": "navigation"
 				}
 			]
